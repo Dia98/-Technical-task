@@ -15,29 +15,43 @@ struct ArticleDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                Text(article.title)
-                    .font(.title)
+                title
                 
-                HStack {
-                    Text(article.updated)
-                    
-                    Spacer()
-                    
-                    Text(article.subsection)
-                }
+                metaInfo
                 
                 images
                 
-                Text(article.abstract)
-                    .font(.body)
-                
-                ForEach(article.desFacet, id: \.self) { item in
-                    Text(item)
-                }
+                description
                 
                 Spacer()
             }
             .padding(.horizontal)
+        }
+    }
+    
+    private var description: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            Text(article.abstract)
+                .font(.body)
+            
+            ForEach(article.desFacet, id: \.self) { item in
+                Text(item)
+            }
+        }
+    }
+    
+    private var title: some View {
+        Text(article.title)
+            .font(.title)
+    }
+    
+    private var metaInfo: some View {
+        HStack {
+            Text(article.updated)
+            
+            Spacer()
+            
+            Text(article.subsection)
         }
     }
     

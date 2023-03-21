@@ -22,16 +22,7 @@ struct ArticlesListView: View {
     private var listView: some View {
         NavigationView {
             ZStack {
-                List(viewModel.currentArticles!, id: \.self) { article in
-                    
-                    NavigationLink {
-                        ArticleDetailView(article: article)
-                    } label: {
-                        Item(article: article)
-                    }
-                }
-                .listStyle(PlainListStyle())
-                
+                listContent
                 
                 if viewModel.currentArticles?.count == 0 {
                     Text("List is empty")
@@ -39,6 +30,18 @@ struct ArticlesListView: View {
             }
             .navigationTitle("NY Times")
         }
+    }
+    
+    private var listContent: some View {
+        List(viewModel.currentArticles!, id: \.self) { article in
+            
+            NavigationLink {
+                ArticleDetailView(article: article)
+            } label: {
+                Item(article: article)
+            }
+        }
+        .listStyle(PlainListStyle())
     }
 }
 
